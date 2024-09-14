@@ -1,0 +1,14 @@
+::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 0.5rem;
+  background-color: rgba(37, 100, 235, 0.3);
+
+  @include respond(phone) {
+    display: none;
+  }
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(37, 100, 235, 0.6);
+  //border-radius: 10rem;
+}
