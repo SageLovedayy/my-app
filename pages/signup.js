@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { signUp } from "next-auth/react";
 import { useRouter } from "next/router";
 import GoogleIcon from "@mui/icons-material/Google";
+import HomeIcon from "@mui/icons-material/Home";
 import Link from "next/link";
+import { MOCK_USERS } from "@/utils/mock-users";
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -11,6 +13,28 @@ export default function SignUpPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const signUp = async ({ name, email, username, password }) => {
+    console.log(MOCK_USERS);
+    const existingUser = MOCK_USERS.find(
+      (user) => user.username === username || user.email === email
+    );
+
+    if (existingUser) {
+      return { ok: false, error: "Username or email already exists" };
+    }
+
+    const newUser = {
+      id: MOCK_USERS.length + 1,
+      name,
+      email,
+      username,
+      password,
+    };
+
+    MOCK_USERS.push(newUser); // Add new user to the shared array
+    return { ok: true, user: newUser };
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,7 +72,7 @@ export default function SignUpPage() {
           }}
           className="text-[1.6rem] font-bold text-[#ef9425] underline hover:text-[#d2790d] transition"
         >
-          {"<- Back"}
+          <HomeIcon style={{ fontSize: 30 }} />
         </button>
         <p className="text-[#fea233] font-bold">MGFit</p>
       </header>

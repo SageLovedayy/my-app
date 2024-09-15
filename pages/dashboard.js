@@ -1,14 +1,14 @@
 import Layout from "@/components/layout";
 import { Input } from "@mui/material";
+import exercises from "@/public/assets/data/exercises.json";
 
 export default function Dashboard() {
+  console.log(exercises);
   return (
     <Layout>
       <div className="relative">
         <div className="settings-body">
           <div className="flex-col flex gap-[3.2rem]">
-            
-
             <Input
               sx={{
                 fontSize: "1.6rem",

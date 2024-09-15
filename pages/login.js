@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
 import GoogleIcon from "@mui/icons-material/Google";
+import HomeIcon from "@mui/icons-material/Home";
 import { IconButton } from "@mui/material";
 import Link from "next/link";
+import { MOCK_USERS } from "@/utils/mock-users";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -12,6 +14,7 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(MOCK_USERS);
     const result = await signIn("credentials", {
       redirect: false,
       username,
@@ -44,7 +47,7 @@ export default function LoginPage() {
           onClick={() => router.push("/")}
           className="text-[1.6rem] font-bold text-[#ef9425] underline rounded-full hover:text-[#d2790d] transition"
         >
-          {"<- Back"}
+          <HomeIcon style={{fontSize:30,}} />
         </button>
         <p className="text-[#fea233] mr-[1rem] font-bold">MGFit</p>
       </header>

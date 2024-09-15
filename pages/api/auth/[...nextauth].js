@@ -2,6 +2,7 @@ import axios from "axios";
 import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { MOCK_USERS } from "@/utils/mock-users"; //TO BE REMOVED...acting as makeshift database for now
 
 const BACKEND_ACCESS_TOKEN_LIFETIME = 45 * 60; // 45 minutes
 const BACKEND_REFRESH_TOKEN_LIFETIME = 6 * 24 * 60 * 60; // 6 days
@@ -9,24 +10,6 @@ const BACKEND_REFRESH_TOKEN_LIFETIME = 6 * 24 * 60 * 60; // 6 days
 const getCurrentEpochTime = () => {
   return Math.floor(new Date().getTime() / 1000);
 };
-
-const MOCK_USERS = [
-  {
-    id: 1,
-    username: "mockuser",
-    name: "Mock User One",
-    email: "mockuser1@example.com",
-    password: "password", // Password for mockuser1
-  },
-  {
-    id: 2,
-    username: "mockuser2",
-    name: "Mock User Two",
-    email: "mockuser2@example.com",
-    password: "password2", // Password for mockuser2
-  },
-  // Add more users as needed
-];
 
 const SIGN_IN_HANDLERS = {
   credentials: async (user, account, profile, email, credentials) => {
