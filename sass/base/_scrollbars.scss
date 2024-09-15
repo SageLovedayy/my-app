@@ -1,7 +1,7 @@
 ::-webkit-scrollbar {
   width: 0.5rem;
   height: 0.5rem;
-  background-color: rgba(37, 100, 235, 0.3);
+  background-color: #2b1a06;
 
   @include respond(phone) {
     display: none;
@@ -9,6 +9,7 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(37, 100, 235, 0.6);
+  background: #8b5007;
+  opacity: 30%;
   //border-radius: 10rem;
 }

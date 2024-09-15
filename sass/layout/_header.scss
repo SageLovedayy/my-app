@@ -1,0 +1,151 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 2.4rem;
+  /*width: 139.2rem;*/
+  padding: 2rem;
+  //gap: 12rem;
+  height: 6.4rem;
+  width: 100vw;
+
+  @include respond(phone) {
+    width: 100%;
+    padding: 0;
+  }
+}
+
+.header-cont {
+  display: flex;
+  align-items: center;
+  /*width: 139.2rem;*/
+  height: 7rem;
+  background-color: white;
+  z-index: 20;
+  //position: fixed;
+  justify-content: center;
+  box-shadow: 0 0.08rem 0.5rem rgba(#000, 0.1);
+  @include respond(phone) {
+    width: 100%s;
+    //background: #1148d6;
+    //background: black;
+    //background-color: $color-primary;
+    box-shadow: 0 0.1rem 0.8rem rgba(#000, 0.2);
+  }
+}
+
+.header__navbar__logo {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  width: 11rem;
+  justify-content: flex-end;
+
+  @include respond(phone) {
+    width: auto;
+    justify-content: flex-start;
+    //display: none;
+  }
+
+  &-mobilecontainer {
+    display: none;
+    @include respond(phone) {
+      display: flex;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+    }
+  }
+
+  &-text {
+    display: none;
+    @include respond(phone) {
+      display: flex;
+      font-size: 2rem;
+      align-items: center;
+      color: #fff;
+      gap: 1rem;
+      font-family: clash;
+      font-weight: 900;
+      display: none;
+    }
+  }
+
+  &-mobile {
+    display: none;
+    @include respond(phone) {
+      //      background: url(/assets/images/some_png) no-repeat center;
+      background-size: 100%;
+      width: 3.5rem;
+      height: 3.5rem;
+      display: block;
+    }
+  }
+}
+
+.header__navbar__navbuttons {
+  /* background-color: black; */
+  display: flex;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  gap: 1.6rem;
+  /* text-align: center;  */
+}
+
+//----------------------------------------
+.logo {
+  /* LOGO */
+
+  width: auto;
+  height: 2rem;
+
+  font-family: clashbold;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 44px;
+
+  color: #ffffff;
+
+  display: flex;
+  align-items: center;
+}
+
+.logo span {
+  color: #242323;
+  font-size: 1.7rem;
+}
+
+.highlighted {
+  background-color: blue;
+}
+
+.landing-header,
+.section {
+  width: 100%;
+  //padding: 4rem 0;
+  overflow: hidden;
+}
+
+//.landing-header::after,
+//.landing-header::before,
+//.section::after,
+//.section::before {
+//  content: "";
+//  background: url(https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/blur-1.png);
+//  position: absolute;
+//  width: 40rem;
+//  height: 40rem;
+//  background-position: center;
+//  background-repeat: no-repeat;
+//  background-size: contain;
+//  bottom: 0; }
+
+//.landing-header::after {
+//  left: -20rem; }
+
+//.landing-header::before {
+//  right: -20rem; }

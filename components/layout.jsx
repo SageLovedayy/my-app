@@ -1,7 +1,6 @@
 import { useSession, signIn, signOut } from "next-auth/react";
 import Nav from "@/components/Nav";
 import Header from "@/components/Header";
-import Loader from "./loader";
 import Login from "@/pages/login";
 import { api } from "@/utils/mk-req";
 import React, { useEffect } from "react";
@@ -275,7 +274,7 @@ export default function Layout({ children, default: useDefault = true }) {
   //console.log(status);SEE STATUS---VERYIMPORTANT
 
   if (status == "loading") {
-    return <Loader />;
+    return <p>Loading</p>;
   }
 
   //-------------------

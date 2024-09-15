@@ -17,6 +17,7 @@ const Header = () => {
   const [menuActive, setMenuActive] = useState(false);
 
   const { setMode, setSetMode } = useContext(GeneralContext);
+  //const setMode = "user"
 
   const toggleMenu = () => {
     setMenuActive(!menuActive);
@@ -76,7 +77,7 @@ const Header = () => {
           <div className="header__navbar__logo-mobilecontainer">
             <div className="header__navbar__logo-mobile"></div>
           </div>
-      
+
         </div>
 
         <ul className={`nav-menu ${menuActive ? "active" : ""}`}>
