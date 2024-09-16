@@ -66,11 +66,12 @@ export default function Home() {
       {/*<!-- Header -->*/}
       <main className="mt-[7rem] h-screen overflow-y-scroll pb-[7rem]">
         <section className="landing-header bg-[#f5f5f5] flex justify-center">
-          <div className="w-[80%] items-center flex">
-            <div className="w-[60%]">
-              <h1 className="mb-[3rem] text-[7rem] font-bold">
-                Complete Daily <br />
-                <span className="text-[#fea233]">Workout</span> At Home
+          <div className="w-[80%] items-center flex sm:flex-row flex-col lg:p-0 py-[2rem]">
+            <div className="lg:w-[60%] w-full">
+              <h1 className="mb-[3rem] text-[7rem] font-bold leading-tight">
+                Try out our
+                <br />
+                <span className="text-[#fea233]">Fitness</span> Tracker
               </h1>
 
               <p className="mb-[3rem]">
@@ -83,11 +84,11 @@ export default function Home() {
                 href="signup"
                 className="w-fit px-[2.8rem] mt-[2rem] h-[4.8rem] rounded-xl text-[2rem] hover:bg-[#fea233] bg-[#fea233] font-medium text-white flex items-center"
               >
-                Get Started Now
+                Try it Now
               </Link>
             </div>
 
-            <div className="w-[40%]">
+            <div className="w-[40%] lg:block hidden">
               <Image
                 //src="https://raw.githubusercontent.com/programmercloud/pgc-gym/main/img/banner-img.png"
                 src="/assets/images/bodybuild.png"
@@ -106,20 +107,21 @@ export default function Home() {
           className="bg-[#fafafa] py-[8rem] flex justify-center"
           id="why-us"
         >
-          <div className="w-[80%] items-center flex gap-[3.2rem]">
-            <div className="visual">
+          <div className="w-[80%] items-center flex sm:flex-row flex-col gap-[3.2rem]">
+            <div className="lg:w-auto w-full">
               <Image
                 src="/assets/images/explore.jpg"
                 alt="Explore"
-                className="p-[1.4rem] w-full"
-                width={640}
+                className="sm:p-[1.4rem] p-0 w-full"
+                width={1020}
                 height={640}
               />
             </div>
-            <div className="w-[60%]">
+            <div className="sm:w-[60%] w-full">
               <h2 className="text-[3.5rem] font-bold mb-[3rem]">
-                Explore Our Fitness <br />
-                Studio
+                A Health Centric
+                <br />
+                Solution
               </h2>
               <p className="text-[1.5rem] mb-[3rem]">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -132,7 +134,7 @@ export default function Home() {
                 href="signup"
                 className="w-fit px-[2.8rem] mt-[2rem] h-[4.8rem] rounded-xl text-[2rem] hover:bg-[#fea233] bg-[#fea233] font-medium text-white flex items-center"
               >
-                Get Started Now
+                Try it Now
               </Link>
             </div>
           </div>
@@ -147,9 +149,9 @@ export default function Home() {
           <div className="w-[80%] items-center flex flex-col">
             {" "}
             <h2 className="text-[3.5rem] font-bold mb-[3rem] text-[#fea233]">
-              Our Professional Trainers
+              What our users say
             </h2>
-            <div className="w-full items-center justify-between flex">
+            <div className="w-full items-center justify-between flex sm:flex-row flex-col flex-wrap">
               <div className="mb-[2rem] flex gap-[1rem] justify-center flex-col">
                 <Image
                   src="/assets/images/loveday.png"

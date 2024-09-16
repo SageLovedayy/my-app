@@ -23,7 +23,7 @@ export default function LoginPage() {
 
     if (result?.ok) {
       // Login successful
-      router.push("/dashboard");
+      router.push("/overview");
     } else {
       console.error(result);
       alert("Wrong credentials");
@@ -47,7 +47,7 @@ export default function LoginPage() {
           onClick={() => router.push("/")}
           className="text-[1.6rem] font-bold text-[#ef9425] underline rounded-full hover:text-[#d2790d] transition"
         >
-          <HomeIcon style={{fontSize:30,}} />
+          <HomeIcon style={{ fontSize: 30 }} />
         </button>
         <p className="text-[#fea233] mr-[1rem] font-bold">MGFit</p>
       </header>

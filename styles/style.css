@@ -197,7 +197,6 @@ p {
   cursor: pointer;
   display: flex;
   align-items: center;
-  width: 11rem;
   justify-content: flex-end; }
   @media (max-width: 37.5em) {
     .header__navbar__logo {
@@ -335,16 +334,23 @@ p {
 
 /*NAVPANEL====================================================*/
 .try {
-  height: 100vh;
-  padding-bottom: 10rem;
-  overflow: scroll;
+  padding-top: 7rem;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
   position: fixed;
   width: auto;
   z-index: 1;
   box-shadow: 1px 0px 4px 0px rgba(0, 0, 0, 0.1); }
+  @media (max-width: 56.25em) {
+    .try {
+      height: 100%;
+      padding-top: 0 !important;
+      padding-bottom: 7rem; } }
   @media (max-width: 37.5em) {
     .try {
       height: 100%;
+      padding-top: 0 !important;
       padding-bottom: 7rem; } }
 
 @media (max-width: 56.25em) {
@@ -358,24 +364,29 @@ p {
 .left-panel {
   display: flex;
   flex-direction: column;
+  height: 100%;
   width: auto;
   background: #fff;
   /*z-index: 1;*/
   /*-------*/
   /*position: fixed;*/ }
+  @media (max-width: 56.25em) {
+    .left-panel {
+      height: 80%; } }
   @media (max-width: 37.5em) {
     .left-panel {
       margin: 0 auto;
-      height: auto; } }
+      height: 75%; } }
 
 .navigation-panel {
   display: flex;
   padding: 3.2rem 1rem 1rem 1rem;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   gap: 1.6rem;
-  /*height: 70rem;*/ }
+  /*height: 70rem;*/
+  height: 100%; }
 
 .Quick-navigation-item {
   /*color: rgba(0, 0, 0, 0.4);*/
@@ -397,5 +408,5 @@ p {
       font-size: 2rem; } }
 
 .Quick-navigation-item:hover {
-  background: rgba(37, 100, 235, 0.571);
+  background: rgba(254, 163, 51, 0.58);
   /*color: #fff;*/ }
