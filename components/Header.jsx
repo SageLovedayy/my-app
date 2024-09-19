@@ -7,7 +7,7 @@ import { GeneralContext } from "@/context/GeneralContext";
 import TrackedLink from "./TrackedLink";
 import { useRouter } from "next/router";
 import { NotificationsSVG, SettingsSVG } from "./svg";
-import SearchIcon from '@mui/icons-material/Search';
+import SearchIcon from "@mui/icons-material/Search";
 
 const Header = () => {
   const router = useRouter();
@@ -35,7 +35,7 @@ const Header = () => {
   const handleSearch = (event) => {
     //I WILL ADD SEARCH LOGIC HERE ...
     // might navigate to a search page with query params
-    if (event.key === 'Enter') {
+    if (event.key === "Enter") {
       router.push(`/search_page?query=${event.target.value}`);
     }
   };
@@ -90,8 +90,8 @@ const Header = () => {
             </Link>
           </div>
         </div>*/}
-        <div className="transition sm:w-[30rem] w-fit  text-[1.6rem]">
-          <div className="relative w-full">
+        <div className="transition sm:w-[30rem] w-fit text-[1.6rem]">
+          <div className="relative w-full sm:block hidden">
             <input
               type="text"
               placeholder="Find other users, and more"
