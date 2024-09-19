@@ -302,7 +302,10 @@ export default function Layout({ children, default: useDefault = true }) {
 
   if (useDefault)
     return (
-      <div className="bg-white-900 min-h-screen top-level-div flex flex-col">
+      <div
+        className="bg-white-900 min-h-screen top-level-div flex flex-col"
+        style={{ fontFamily: "'Open Sans', sans-serif" }}
+      >
         <Header />
         <div className="bg-white-900 flex mt-[7rem]">
           <Nav additionalClass={"tray"} />
@@ -316,7 +319,10 @@ export default function Layout({ children, default: useDefault = true }) {
     );
 
   return (
-    <div className="bg-white-900 min-h-screen top-level-div flex flex-col">
+    <div
+      className="bg-white-900 min-h-screen top-level-div flex flex-col"
+      style={{ fontFamily: "'Open Sans', sans-serif" }}
+    >
       <Header />
       <div className="mt-[7rem]">{children}</div>
     </div>

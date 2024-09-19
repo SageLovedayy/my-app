@@ -94,7 +94,7 @@ const Header = () => {
           <div className="relative w-full">
             <input
               type="text"
-              placeholder="Search for users, plans e.t.c"
+              placeholder="Find other users, and more"
               onKeyDown={handleSearch}
               className="w-full pl-[4rem] pr-2 py-[1rem] text-[1.6rem] rounded-lg bg-white border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#fea233]"
             />

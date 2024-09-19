@@ -6,27 +6,37 @@ import HomeIcon from "@mui/icons-material/Home";
 import { IconButton } from "@mui/material";
 import Link from "next/link";
 import { MOCK_USERS } from "@/utils/mock-users";
+import { Alert } from "@mui/material";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errMsg, setErrMsg] = useState(null);
+  const [successMsg, setSuccessMsg] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(MOCK_USERS);
+
+    setLoading(true); // Start loading
+
+    // Perform the sign-in
     const result = await signIn("credentials", {
       redirect: false,
-      username,
+      email,
       password,
     });
 
+    setLoading(false); // End loading
+
+    // Check the result
     if (result?.ok) {
       // Login successful
       router.push("/overview");
     } else {
-      console.error(result);
-      alert("Wrong credentials");
+      // Handle login failure
+      setErrMsg(result?.error || "Wrong credentials");
     }
   };
 
@@ -42,6 +52,43 @@ export default function LoginPage() {
         color: "#333333",
       }}
     >
+      {(errMsg || successMsg) && (
+        <div className="w-full flex justify-center fixed top-[2rem]  right-0 z-50">
+          <div className="p-4 sm:w-[50rem] w-[42rem]">
+            <Alert
+              sx={{
+                fontSize: "1.8rem",
+                display: "flex",
+                boxShadow: "1px 0px 4px 0px rgba(0, 0, 0, 0.1)",
+                //bgcolor: "white",
+                //alignItems: "center",
+                //justifyContent: "center",
+
+                "& .MuiAlert-icon": {
+                  fontSize: "3rem",
+                },
+
+                "& .MuiAlert-action": {
+                  "& .MuiIconButton-root": {
+                    fontSize: "2.6rem",
+                  },
+                  "& .MuiSvgIcon-root": {
+                    fontSize: "2.2rem", //close btn size
+                  },
+                },
+              }}
+              severity={errMsg ? "error" : "success"}
+              //variant="filled"
+              onClose={() => {
+                setErrMsg(null);
+                setSuccessMsg(null);
+              }}
+            >
+              {errMsg || successMsg}
+            </Alert>
+          </div>
+        </div>
+      )}
       <header className="w-[80%] mx-auto mb-[2rem] flex items-center justify-between">
         <button
           onClick={() => router.push("/")}
@@ -94,10 +141,10 @@ export default function LoginPage() {
             {/* Input Fields */}
             <div className="space-y-6">
               <input
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 type="text"
-                placeholder="Username"
+                placeholder="Email"
                 className="w-full border-b-2 border-gray-300 px-4 py-2 text-[1.6rem] outline-none"
                 required
               />
@@ -129,7 +176,7 @@ export default function LoginPage() {
               type="submit"
               className="rounded-xl w-full text-[1.6rem] px-[5rem] py-[1.4rem] bg-[#ef9425] text-white shadow-lg hover:bg-[#d2790d] transition"
             >
-              Login
+              {!loading ? "Login" : "Please wait..."}
             </button>
           </div>
         </form>

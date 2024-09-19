@@ -22,7 +22,8 @@ export default function Nav({ additionalClass }) {
   const session = useSession();
   const { pathname } = router;
   //const { userMode } = useContext(GeneralContext);
-  const { setMode, setSetMode } = useContext(GeneralContext); //JUST FOR TESTING
+  //const { setMode, setSetMode } = useContext(GeneralContext); //JUST FOR TESTING
+  const setMode = "user";
   //const userMode = "company";
 
   //console.log(pathname);
@@ -85,6 +86,7 @@ export default function Nav({ additionalClass }) {
   NavLink.displayName = "NavLink";
 
   const Navigation = ({ pathname, presetMode }) => {
+    console.log("usermode", presetMode);
     const navLinks = useMemo(
       () =>
         presetMode === "user" ? (

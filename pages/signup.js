@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { signUp } from "next-auth/react";
 import { useRouter } from "next/router";
 import GoogleIcon from "@mui/icons-material/Google";
 import HomeIcon from "@mui/icons-material/Home";
 import Link from "next/link";
-import { MOCK_USERS } from "@/utils/mock-users";
+import axios from "axios";
+import Alert from "@mui/material/Alert"; // Import the Alert component from MUI
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -13,43 +13,58 @@ export default function SignUpPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState(""); // Added success message state
+  const [loading, setLoading] = useState(false);
 
   const signUp = async ({ name, email, username, password }) => {
-    console.log(MOCK_USERS);
-    const existingUser = MOCK_USERS.find(
-      (user) => user.username === username || user.email === email
-    );
+    try {
+      const response = await axios.post(
+        "https://mg-fit.vercel.app/api/v1/users/signup",
+        {
+          name,
+          email,
+          password,
+          passwordConfirm: password, // Add passwordConfirm to match backend expectations
+        }
+      );
 
-    if (existingUser) {
-      return { ok: false, error: "Username or email already exists" };
+      return response.data; // Return the response data to handle in handleSubmit
+      console.log(response);
+    } catch (error) {
+      console.error("Sign up error:", error);
+      return {
+        ok: false,
+        error: error.response?.data?.message || "An error occurred",
+      };
     }
-
-    const newUser = {
-      id: MOCK_USERS.length + 1,
-      name,
-      email,
-      username,
-      password,
-    };
-
-    MOCK_USERS.push(newUser); // Add new user to the shared array
-    return { ok: true, user: newUser };
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      setErrMsg("Passwords do not match");
+      return;
+    }
+
+    setLoading(true); // Start loading
+
     const result = await signUp({
-      redirect: false,
       name,
       email,
       username,
       password,
     });
 
-    if (result.ok) {
-      router.push("/login");
+    console.log("results", result);
+    setLoading(false); // End loading
+
+    if (result.status === "success") {
+      setSuccessMsg("Registration successful! Redirecting to login...");
+      setTimeout(() => router.push("/login"), 2000); // Redirect after 2 seconds
     } else {
-      alert(result.error);
+      setErrMsg(result.error || "Sign up failed");
     }
   };
 
@@ -65,6 +80,38 @@ export default function SignUpPage() {
         color: "#333333",
       }}
     >
+      {(errMsg || successMsg) && (
+        <div className="w-full flex justify-center fixed top-[2rem] right-0 z-50">
+          <div className="p-4 sm:w-[50rem] w-[42rem]">
+            <Alert
+              sx={{
+                fontSize: "1.8rem",
+                display: "flex",
+                boxShadow: "1px 0px 4px 0px rgba(0, 0, 0, 0.1)",
+                "& .MuiAlert-icon": {
+                  fontSize: "3rem",
+                },
+                "& .MuiAlert-action": {
+                  "& .MuiIconButton-root": {
+                    fontSize: "2.6rem",
+                  },
+                  "& .MuiSvgIcon-root": {
+                    fontSize: "2.2rem", // Close button size
+                  },
+                },
+              }}
+              severity={errMsg ? "error" : "success"}
+              onClose={() => {
+                setErrMsg("");
+                setSuccessMsg("");
+              }}
+            >
+              {errMsg || successMsg}
+            </Alert>
+          </div>
+        </div>
+      )}
+
       <header className="w-[80%] mx-auto mt-[2rem] flex items-center justify-between">
         <button
           onClick={() => {
@@ -94,11 +141,12 @@ export default function SignUpPage() {
             </p>
             <div className="space-y-6">
               <input
-                type="name"
+                type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Name"
                 className="w-full border-b-2 border-gray-300 px-4 py-2 text-[1.6rem] outline-none"
+                required
               />
               <input
                 type="text"
@@ -106,6 +154,7 @@ export default function SignUpPage() {
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Username"
                 className="w-full border-b-2 border-gray-300 px-4 py-2 text-[1.6rem] outline-none"
+                required
               />
               <input
                 type="email"
@@ -113,6 +162,7 @@ export default function SignUpPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Email"
                 className="w-full border-b-2 border-gray-300 px-4 py-2 text-[1.6rem] outline-none"
+                required
               />
               <input
                 type="password"
@@ -120,6 +170,7 @@ export default function SignUpPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
                 className="w-full border-b-2 border-gray-300 px-4 py-2 text-[1.6rem] outline-none"
+                required
               />
               <input
                 type="password"
@@ -127,6 +178,7 @@ export default function SignUpPage() {
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 placeholder="Confirm Password"
                 className="w-full border-b-2 border-gray-300 px-4 py-2 text-[1.6rem] outline-none"
+                required
               />
             </div>
             <div className="flex justify-between items-center my-6">
@@ -143,8 +195,9 @@ export default function SignUpPage() {
             <button
               type="submit"
               className="rounded-xl w-full text-[1.6rem] px-[5rem] py-[1.4rem] bg-[#ef9425] text-white shadow-lg hover:bg-[#d2790d] transition"
+              disabled={loading}
             >
-              Sign Up
+              {loading ? "Loading..." : "Sign Up"}
             </button>
           </div>
         </form>

@@ -32,13 +32,13 @@ export default function Home() {
               <Link href="#">Home</Link>
             </li>
             <li className="text-[1.8rem] font-semibold hover:text-[#fea233] hover:font-bold">
-              <Link href="#why-us">Features</Link>
+              <Link href="#why-us">Blog</Link>
             </li>
             <li className="text-[1.8rem] font-semibold hover:text-[#fea233] hover:font-bold">
-              <Link href="#explore">Explore</Link>
+              <Link href="#explore">Team</Link>
             </li>
             <li className="text-[1.8rem] font-semibold hover:text-[#fea233] hover:font-bold">
-              <Link href="#discount">Register</Link>
+              <Link href="#discount">Projects</Link>
             </li>
           </ul>
 
