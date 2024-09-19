@@ -8,6 +8,9 @@ import Link from "next/link";
 import { MOCK_USERS } from "@/utils/mock-users";
 import { Alert } from "@mui/material";
 
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
 export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
@@ -15,6 +18,11 @@ export default function LoginPage() {
   const [errMsg, setErrMsg] = useState(null);
   const [successMsg, setSuccessMsg] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+
+  const handleClickShowPassword = () => {
+    setShowPassword((prev) => !prev);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -148,14 +156,27 @@ export default function LoginPage() {
                 className="w-full border-b-2 border-gray-300 px-4 py-2 text-[1.6rem] outline-none"
                 required
               />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className="w-full border-b-2 border-gray-300 px-4 py-2 text-[1.6rem] outline-none"
-                required
-              />
+              <div className="relative w-full">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Password"
+                  className="w-full border-b-2 border-gray-300 px-4 py-2 text-[1.6rem] outline-none pr-12"
+                  required
+                />
+                <button
+                  type="button"
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2"
+                  onClick={handleClickShowPassword}
+                >
+                  {showPassword ? (
+                    <VisibilityOff style={{ fontSize: 24 }} />
+                  ) : (
+                    <Visibility style={{ fontSize: 24 }} />
+                  )}
+                </button>
+              </div>
             </div>
             {/* Remember me and Forgot Password */}
             <div className="flex justify-between items-center my-6">

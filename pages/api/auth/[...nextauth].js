@@ -2,33 +2,45 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
-// Mock user data
-const MOCK_USER = {
-  email: "admin@me.com",
-  password: "password123",
-};
-
 export default NextAuth({
   providers: [
+
     CredentialsProvider({
       credentials: {
         email: { label: "Email", type: "text" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // Check if the provided credentials match the mock user
-        if (
-          credentials.email === MOCK_USER.email &&
-          credentials.password === MOCK_USER.password
-        ) {
-          // Return the user object if authentication is successful
-          return {
-            email: MOCK_USER.email,
-            accessToken: "mockAccessToken123", // Mock access token
-          };
-        } else {
-          // Return null if authentication fails
-          return null;
+        try {
+          const res = await fetch(
+            "https://mg-fit.vercel.app/api/v1/users/login",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email: credentials.email,
+                password: credentials.password,
+              }),
+            }
+          );
+
+          const data = await res.json();
+
+          // Check if the response contains a token
+          if (data.token) {
+            // Return the user object if authentication is successful
+            return {
+              email: credentials.email,
+              accessToken: data.token,
+            };
+          } else {
+            return null; // Return null if authentication fails
+          }
+        } catch (error) {
+          console.error("Authorization error:", error);
+          return null; // Return null if there's an error
         }
       },
     }),
