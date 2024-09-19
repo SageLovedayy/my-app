@@ -64,7 +64,7 @@ const ProfileSidebar = ({ currentSection, setCurrentSection }) => {
 const PersonalInformation = () => {
   return (
     <div className="p-6 bg-white rounded-lg shadow">
-      <h2 className="text-2xl font-semibold mb-4">Personal Information</h2>
+      <h2 className="text-[2.2rem] font-semibold mb-4">Personal Information</h2>
       <div className="mb-6">
         <label className="block mb-2 text-gray-700">Profile Picture</label>
         <input type="file" className="w-full border-gray-300 p-2 rounded-lg" />
@@ -119,7 +119,7 @@ const PersonalInformation = () => {
 const AccountSettings = () => {
   return (
     <div className="p-6 bg-white rounded-lg shadow">
-      <h2 className="text-2xl font-semibold mb-4">Account Settings</h2>
+      <h2 className="text-[2.2rem] font-semibold mb-4">Account Settings</h2>
       <div className="mb-6">
         <label className="block mb-2 text-gray-700">Change Password</label>
         <input
@@ -154,7 +154,7 @@ const AccountSettings = () => {
 const FitnessHistory = () => {
   return (
     <div className="p-6 bg-white rounded-lg shadow">
-      <h2 className="text-2xl font-semibold mb-4">Fitness History</h2>
+      <h2 className="text-[2.2rem] font-semibold mb-4">Fitness History</h2>
       <p>Here you can see your workout log and progress summary over time.</p>
       {/* Example of workout log */}
       <ul className="mt-4 space-y-4">
@@ -175,7 +175,7 @@ const FitnessHistory = () => {
 const CommunityFeed = () => {
   return (
     <div className="p-6 bg-white rounded-lg shadow">
-      <h2 className="text-2xl font-semibold mb-4">Community Feed</h2>
+      <h2 className="text-[2.2rem] font-semibold mb-4">Community Feed</h2>
       <p>See updates from followed users and fitness communities.</p>
       {/* Example of community activity */}
       <ul className="mt-4 space-y-4">
